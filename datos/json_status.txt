@@ -1,0 +1,7 @@
+   {
+        "content": "content",
+        "date": "", //dejar en blanco
+        "id": 0,     //dejar siempre a 0
+        "username": "username"
+    }
+

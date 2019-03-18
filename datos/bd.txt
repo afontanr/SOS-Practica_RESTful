@@ -1,0 +1,254 @@
+CREATE SCHEMA IF NOT EXISTS `UPMsocial`  DEFAULT CHARACTER SET utf8 ;
+
+USE UPMsocial;
+
+
+CREATE TABLE `UPMsocial`.`Usuarios` (
+  `n_usuario` VARCHAR(45) NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `fecha_usuario` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`n_usuario`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE `UPMsocial`.`Estado` (
+  `id_estado` INT NOT NULL AUTO_INCREMENT,
+  `n_usuario` VARCHAR(45) NOT NULL,
+  `contenido` VARCHAR(200) NOT NULL,
+  `fecha_estado` DATE NOT NULL,
+  PRIMARY KEY (`id_estado`),
+  INDEX `fk_Status_1_idx` (`n_usuario` ASC),
+  CONSTRAINT `fk_Status_1`
+    FOREIGN KEY (`n_usuario`)
+    REFERENCES `UPMsocial`.`Usuarios` (`n_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+	    ENGINE = InnoDB;
+
+CREATE TABLE `UPMsocial`.`Amigos` (
+  `id_Amigos` INT NOT NULL AUTO_INCREMENT,
+  `n_usuario` VARCHAR(45) NOT NULL,
+  `n_amigo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_Amigos`),
+  INDEX `fk_Friends_1_idx` (`n_usuario` ASC),
+  INDEX `fk_Friends_2_idx` (`n_amigo` ASC),
+  CONSTRAINT `fk_Friends_1`
+    FOREIGN KEY (`n_usuario`)
+    REFERENCES `UPMsocial`.`Usuarios` (`n_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Friends_2`
+    FOREIGN KEY (`n_amigo`)
+    REFERENCES `UPMsocial`.`Usuarios` (`n_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('vgimenez', 'Victor', 'Gimenez', 'vgimenez@upm.es', '2017-06-11');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('margz', 'Marta', 'Gonzalez', 'margz@upm.es', '2014-07-08');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`)
+VALUES ('oprieto', 'Oscar', 'Prieto', 'oprieto@upm.es', '2015-09-11');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('anafer', 'Ana', 'Fernandez', 'anafer@upm.es', '2016-08-12');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('osorioru', 'Ruben', 'Osorio', 'osorioru@upm.es', '2015-02-23');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('prietona', 'Natalia', 'Prieto', 'prietonat@upm.es', '2016-05-04');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('davemz', 'David', 'Marquez', 'davemz@upm.es', '2017-08-23');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('mtzjenni', 'Jennifer', 'Martinez', 'mtzjenni@upm.es', '2015-07-16');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('crsaez', 'Cristian', 'Saez', 'crsaez@upm.es', '2017-11-02');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('scasas', 'Sara', 'Casas', 'scasas@upm.es', '2016-09-06');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('aitorres', 'Aitor', 'Torres', 'aitorres@upm,es', '2017-07-01');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('monbar', 'Monica', 'Barral', 'monbar@upm.es', '2016-03-14');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('adrivil', 'Adrian', 'Villar', 'adrivil@upm.es', '2015-04-12');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('alpazos', 'Alicia', 'Pazos', 'alpazos@upm.es', '2015-06-12');
+INSERT INTO `UPMsocial`.`Usuarios` (`n_usuario`, `nombre`, `apellido`, `email`, `fecha_usuario`) 
+VALUES ('ernbravo', 'Ernesto', 'Bravo', 'ernbravo@upm.es', '2014-07-12');
+
+
+
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('1', 'vgimenez', 'Victor se ha dado de alta', '2017-06-11');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('2', 'vgimenez', 'Victor y David son ahora amigos', '2017-08-24');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('3', 'vgimenez', 'Victor y Cristian son ahora amigos', '2017-11-03');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('4', 'vgimenez', 'Victor y Aitor son ahora amigos', '2017-07-02');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('5', 'margz', 'Marta se ha dado de alta', '2014-07-08');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('6', 'margz', 'Marta y Ernesto son ahora amigos', '2014-07-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('7', 'oprieto', 'Oscar se ha dado de alta', '2015-09-11');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('8', 'oprieto', 'Oscar y Ruben son ahora amigos', '2015-09-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('9', 'oprieto', 'Oscar y Jennifer son ahora amigos', '2015-09-14');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('10', 'oprieto', 'Oscar y Adrian son ahora amigos', '2015-09-16');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('11', 'oprieto', 'Oscar y Alicia son ahora amigos', '2015-09-18');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('12', 'anafer', 'Ana se ha dado de alta', '2016-08-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('13', 'anafer', 'Ana y Natalia son ahora amigas', '2016-08-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('14', 'anafer', 'Ana y Sara son ahora amigas', '2016-09-07');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('15', 'anafer', 'Ana y Monica son ahora amigas', '2016-08-15');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('16', 'osorioru', 'Ruben se ha dado de alta', '2015-02-23');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('17', 'osorioru', 'Ruben y Oscar son ahora amigos', '2015-09-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('18', 'osorioru', 'Ruben y Jennifer son ahora amigos', '2015-07-17');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('19', 'osorioru', 'Ruben y Adrian son ahora amigos', '2015-06-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('20', 'osorioru', 'Ruben y Alicia son ahora amigos', '2015-04-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('21', 'prietona', 'Natalia se ha dado de alta', '2016-05-04');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('22', 'prietona', 'Natalia y Ana son ahora amigas', '2016-08-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('23', 'prietona', 'Natalia y Sara son ahora amigas', '2016-09-07');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('24', 'prietona', 'Natalia y Monica son ahora amigas', '2016-05-05');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('25', 'davemz', 'David se ha dado de alta', '2017-08-23');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('26', 'davemz', 'David y Victor son ahora amigos', '2017-08-24');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('27', 'davemz', 'David y Cristian son ahora amigos', '2017-11-07');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('28', 'davemz', 'David y Aitor son ahora amigos', '2017-08-26');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('29', 'mtzjenni', 'Jennifer se ha dado de alta', '2015-07-16');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('30', 'mtzjenni', 'Jennifer y Oscar son ahora amigos', '2015-09-14');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('31', 'mtzjenni', 'Jennifer y Ruben son ahora amigos', '2015-07-17');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('32', 'mtzjenni', 'Jennifer y Adrian son ahora amigos', '2015-07-18');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('33', 'mtzjenni', 'Jennifer y Alicia son ahora amigas', '2015-07-20');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('34', 'crsaez', 'Cristian se ha dado de alta', '2017-11-02');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('35', 'crsaez', 'Cristian y Victor son ahora amigos', '2017-11-03');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('36', 'crsaez', 'Cristian y David son amigos', '2017-11-07');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('37', 'crsaez', 'Cristian y Aitor son ahora amigos', '2017-12-10');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('38', 'scasas', 'Sara se ha dado de alta', '2016-09-06');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('39', 'scasas', 'Sara y Ana ahora son amigas', '2016-09-07');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('40', 'scasas', 'Sara y Monica son ahora amigas', '2016-10-27');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('41', 'aitorres', 'Aitor se ha dado de alta', '2017-07-01');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('42', 'aitorres', 'Aitor y Victor ahora son amigos', '2017-07-02');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('43', 'aitorres', 'Aitor y David son ahora amigos', '2017-08-26');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('44', 'aitorres', 'Aitor y Cristian son ahora amigos', '2017-12-10');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('45', 'monbar', 'Monica se ha dado de alta', '2016-03-14');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('46', 'monbar', 'Monica y Ana son ahora amigas', '2016-08-15');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('47', 'monbar', 'Monica y Natalia son ahora amigas', '2016-05-05');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('48', 'monbar', 'Monica y Sara son ahora amigas', '2016-10-27');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('49', 'adrivil', 'Adrian se ha dado de alta', '2015-06-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('50', 'adrivil', 'Adrian y Oscar son ahora amigos', '2015-09-16');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('51', 'adrivil', 'Adrian y Ruben son ahora amigos', '2015-06-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('52', 'adrivil', 'Adrian y Jennifer son ahora amigos', '2015-07-18');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('53', 'adrivil', 'Adrian y Alicia son ahora amigos', '2015-08-06');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('54', 'alpazos', 'Alicia se ha dado de alta', '2015-04-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('55', 'alpazos', 'Alicia y Oscar son ahora amigos', '2015-09-18');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('56', 'alpazos', 'Alicia y Ruben son ahora amigos', '2015-04-13');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('57', 'alpazos', 'Alicia y Jennifer son ahora amigas', '2015-07-20');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('58', 'alpazos', 'Alicia y Adrian son ahora amigos', '2015-08-06');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('59', 'ernbravo', 'Ernesto se ha dado de alta', '2014-07-12');
+INSERT INTO `UPMsocial`.`Estado` (`id_estado`, `n_usuario`, `contenido`, `fecha_estado`) 
+VALUES ('60', 'ernbravo', 'Ernesto y Marta son ahora amigos', '2014-07-13');
+
+
+
+
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('1', 'vgimenez', 'davemz');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('2', 'vgimenez', 'crsaez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('3', 'vgimenez', 'aitorres');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('4', 'margz', 'ernbravo');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('5', 'oprieto', 'osorioru');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('6', 'oprieto', 'mtzjenni');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('7', 'oprieto', 'adrivil');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('8', 'oprieto', 'alpazos');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('9', 'anafer', 'prietona');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('10', 'anafer', 'scasas');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('11', 'anafer', 'monbar');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('12', 'osorioru', 'oprieto');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('13', 'osorioru', 'mtzjenni');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('14', 'osorioru', 'adrivil');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('15', 'osorioru', 'alpazos');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('16', 'prietona', 'anafer');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('17', 'prietona', 'scasas');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('18', 'prietona', 'monbar');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('19', 'davemz', 'vgimenez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('20', 'davemz', 'crsaez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('21', 'davemz', 'aitorres');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('22', 'mtzjenni', 'oprieto');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('23', 'mtzjenni', 'osorioru');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('24', 'mtzjenni', 'adrivil');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('25', 'mtzjenni', 'alpazos');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('26', 'crsaez', 'vgimenez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('27', 'crsaez', 'davemz');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('28', 'crsaez', 'aitorres');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('29', 'scasas', 'anafer');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('30', 'scasas', 'prietona');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('31', 'scasas', 'monbar');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('32', 'aitorres', 'vgimenez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('33', 'aitorres', 'davemz');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('34', 'aitorres', 'crsaez');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('35', 'monbar', 'anafer');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('36', 'monbar', 'prietona');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('37', 'monbar', 'scasas');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('38', 'adrivil', 'oprieto');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('39', 'adrivil', 'osorioru');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('40', 'adrivil', 'mtzjenni');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('41', 'adrivil', 'alpazos');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('42', 'alpazos', 'oprieto');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('43', 'alpazos', 'osorioru');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('44', 'alpazos', 'mtzjenni');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('45', 'alpazos', 'adrivil');
+INSERT INTO `UPMsocial`.`Amigos` (`id_amigos`, `n_usuario`, `n_amigo`) VALUES ('46', 'ernbravo', 'margz');
+
+

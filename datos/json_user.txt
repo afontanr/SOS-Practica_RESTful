@@ -1,0 +1,8 @@
+    {
+        "date": "", //dejar en blanco
+        "email": "user@example.es",
+        "fname": "FirsName",
+        "lname": "LastName",
+        "username": "Username"
+    }
+

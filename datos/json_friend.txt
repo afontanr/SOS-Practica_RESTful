@@ -1,0 +1,5 @@
+{
+    "friendname": "friendname",
+    "id": 0,    //dejar a 0
+    "username": "username"
+}
