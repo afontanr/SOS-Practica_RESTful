@@ -1,4 +1,5 @@
 ##UPMSocial api REST##
+
 ###Servicio propuesto
 Se trata de diseñar e implementar una API REST y un prototipo funcional de un servicio sencillo para una red social a la que llamaremos UPMSocial. En este servicio los
 usuarios publican mensajes (estados), y siguen a otros usuarios (amigos) para poder ver los estados de éstos. El servicio debe al menos soportar a través de esa API las
