@@ -9,7 +9,7 @@ siguientes operaciones:
 - Obtener una lista de todos los usuarios de la red
 - Añadir un usuario nuevo
 - Ver los datos básicos de un usuario
-- Publicar un nuevo estado2
+- Publicar un nuevo estado
 - Eliminar un estado
 - Obtener una lista de todos los estados de un usuarioy filtrar esa lista por fecha
 o limitar la cantidad de información obtenida por número de estados (e.g. los
