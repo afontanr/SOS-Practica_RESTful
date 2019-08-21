@@ -64,7 +64,7 @@ public class User {
     }
 
 
-
+//constructor
     public User(String username, String fname, String lname, String email, String date ) {
         super();
         this.username = username;
